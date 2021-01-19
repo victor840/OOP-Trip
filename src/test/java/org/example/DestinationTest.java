@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.exceptions.InsufficientFundsException;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,17 +16,19 @@ public class DestinationTest {
 
     @Before
     public void setUp() throws Exception {
-        destination = new Destination("Tulum", 2000.00, 50.00, true);
+        destination = new Destination("Tulum", 2000.00, 01.00, true);
     }
 
     @Test (expected = InsufficientFundsException.class)
-    public void allowToVisit() throws InsufficientFundsException { // Need to review this
+    public void allowToVisit() throws InsufficientFundsException {
         List<Destination> placesVisted = new ArrayList<>();
         placesVisted.add(destination);
         CovidResults covidResults = new CovidResults( new Date(), false );
         Traveler traveler = new Traveler("Eduardo", "12345", 00.00,
                 placesVisted, false, covidResults);
         destination.allowToVisit(traveler);
+
+        Assert.assertTrue(true);
     }
 
     @Test
